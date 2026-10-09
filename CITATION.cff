@@ -8,6 +8,7 @@ authors:
     affiliation: "Mizoram University, Aizawl, India"
     orcid: "https://orcid.org/0009-0003-3258-7299"
 version: 1.0.0
+doi: 10.5281/zenodo.23269371
 date-released: "2026-10-10"
 license: MIT
 repository-code: "https://github.com/DinosKuri/jhum-mapper"

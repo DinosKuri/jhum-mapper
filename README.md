@@ -1,5 +1,7 @@
 # jhum-mapper
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23269371.svg)](https://doi.org/10.5281/zenodo.23269371)
+
 Annual mapping of shifting-cultivation (*jhum*) clearing from harmonized Landsat 5/7/8/9,
 calibrated and independently validated for Mizoram, north-east India, 1989–2025.
 
@@ -88,10 +90,10 @@ Scripts 04, 05, 08 and 09 read labelled points as Earth Engine table assets
 
 ## Citation
 
-Please cite the archived release (DOI on the Zenodo record and in GitHub's *Cite this repository*):
+Please cite the archived release (also available from GitHub's *Cite this repository*):
 
-> Khiangte, L. (2026). jhum-mapper: code and reference data for annual jhum mapping in Mizoram
-> (v1.0.0). Zenodo.
+> Khiangte, L. (2026). *jhum-mapper: code and reference data for annual jhum mapping in Mizoram
+> (1989–2025)* (Version 1.0.0) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.23269371
 
 The accompanying paper is under review; its reference will be added on publication.
 
