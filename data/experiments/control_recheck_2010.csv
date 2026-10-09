@@ -1,0 +1,11 @@
+point_id,lat,lon,current_label,current_landcover,google_earth_pro,recheck_ref_jhum,recheck_landcover,recheck_notes
+H2010_108,22.909061,92.510888,not jhum (0),forest,,,,
+H2010_068,22.794526,92.5152,not jhum (0),forest,,,,
+H2010_121,22.518563,92.546192,not jhum (0),forest,,,,
+H2010_119,22.1313,92.683635,not jhum (0),fallow,,,,
+H2010_065,23.924786,92.710314,not jhum (0),forest,,,,
+H2010_113,23.099863,92.769334,not jhum (0),wrc,,,,
+H2010_033,22.497004,92.756398,not jhum (0),fallow,,,,
+H2010_130,23.977068,93.317755,not jhum (0),forest,,,,
+H2010_009,23.471496,92.857728,not jhum (0),settlement,,,,
+H2010_127,23.147564,92.756937,not jhum (0),forest,,,,

@@ -1,0 +1,25 @@
+{
+  "title": "jhum-mapper: code and reference data for annual jhum mapping in Mizoram (1989-2025)",
+  "description": "<p>Google Earth Engine code and reference data for mapping annual shifting-cultivation (jhum) clearing from harmonized Landsat 5/7/8/9 with a two-branch rule on symmetric anniversary composites of the Normalized Burn Ratio. Independently validated with blind stratified samples in two sensor eras: 310 PlanetScope-interpreted points for 2025 (overall accuracy 0.995, user's 0.886, producer's 0.901) and 160 points for 2010 (0.996, 0.983, 0.812). Includes the final mapping script, a standalone mapping tool, the annual area series 1989-2025, calibration and validation points, experiment inputs and the reference interpretation protocol.</p><p>Licences: code MIT; data, figures and documentation CC BY 4.0 (see LICENSE-data).</p>",
+  "upload_type": "software",
+  "license": "MIT",
+  "creators": [
+    {
+      "name": "Khiangte, Laldinchhuaha",
+      "affiliation": "Mizoram University, Aizawl, India",
+      "orcid": "0009-0003-3258-7299"
+    }
+  ],
+  "keywords": [
+    "shifting cultivation",
+    "swidden",
+    "jhum",
+    "Landsat",
+    "Normalized Burn Ratio",
+    "Google Earth Engine",
+    "accuracy assessment",
+    "Mizoram",
+    "north-east India"
+  ],
+  "version": "1.0.0"
+}

@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+title: "jhum-mapper: code and reference data for annual jhum mapping in Mizoram"
+message: "If you use this software or data, please cite it using the metadata below."
+type: software
+authors:
+  - family-names: Khiangte
+    given-names: Laldinchhuaha
+    affiliation: "Mizoram University, Aizawl, India"
+    orcid: "https://orcid.org/0009-0003-3258-7299"
+version: 1.0.0
+date-released: "2026-10-10"
+license: MIT
+repository-code: "https://github.com/DinosKuri/jhum-mapper"
+keywords:
+  - shifting cultivation
+  - swidden
+  - jhum
+  - Landsat
+  - Normalized Burn Ratio
+  - Google Earth Engine
+  - Mizoram
+abstract: >-
+  Google Earth Engine code and reference data for mapping annual shifting-cultivation
+  (jhum) clearing from harmonized Landsat 5/7/8/9 with a two-branch rule on symmetric
+  anniversary composites of the Normalized Burn Ratio. Independently validated with blind
+  stratified samples for 2025 (310 points) and 2010 (160 points) in Mizoram, north-east
+  India; includes the annual area series 1989-2025.
