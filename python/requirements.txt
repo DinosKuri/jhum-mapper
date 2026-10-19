@@ -1,0 +1,12 @@
+# Python 3.11+ (built and tested with Python 3.13)
+matplotlib==3.11.2
+numpy==2.5.3
+pandas==3.0.5
+geopandas==1.2.0
+rasterio==1.5.2
+shapely==2.2.0
+pyproj==3.8.0
+scipy==1.18.1
+Pillow==12.3.0
+# Fonts: Times New Roman if installed, otherwise Liberation Serif (metric-identical).
+# Rasterising PDFs to 500 dpi (Fig 9) uses poppler's pdftoppm.

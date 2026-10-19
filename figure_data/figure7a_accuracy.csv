@@ -1,0 +1,7 @@
+sensor,metric,value,lo,hi
+Landsat 30 m,users,0.672,0.563,0.774
+Landsat 30 m,producers,0.614,0.491,0.744
+Landsat 30 m,f1,0.642,0.542,0.735
+Sentinel-2 20 m,users,0.739,0.641,0.835
+Sentinel-2 20 m,producers,0.811,0.653,0.962
+Sentinel-2 20 m,f1,0.774,0.672,0.868

@@ -1,0 +1,4 @@
+class,area_km2,real_jhum_km2,not_jhum_km2,n_points,frac_real
+Both maps,425.6,329.8,95.8,40,0.775
+Landsat only,102.5,25.1,77.4,45,0.244
+Sentinel-2 only,208.5,139.0,69.5,45,0.667

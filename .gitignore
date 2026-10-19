@@ -1,0 +1,13 @@
+out/
+layers/
+layers30/
+layers_palsar/
+fig9_layers/
+*.tif
+*.gpkg
+__pycache__/
+.DS_Store
+*.qgz
+*.qgs
+*.qgz~
+.env

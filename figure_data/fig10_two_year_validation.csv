@@ -1,0 +1,4 @@
+year,sensors,design,OA,OA_lo,OA_hi,UA,UA_lo,UA_hi,PA,PA_lo,PA_hi,F1,mapped_km2,adjusted_km2,adjusted_lo,adjusted_hi,n_points
+2010,TM / ETM+,three strata,0.9957,0.9878,1.0,0.983,0.950,1.0,0.812,0.513,1.0,0.890,375.1,454.2,286.6,621.8,160
+2025,OLI / OLI-2,three strata,0.9947,0.9896,0.9998,0.886,0.811,0.961,0.901,0.726,1.0,0.893,527.4,518.3,410.5,626.1,310
+2025,OLI / OLI-2,five strata; both sensors,0.981,0.974,0.987,0.672,0.563,0.774,0.614,0.491,0.744,0.642,528.2,577.8,461.0,724.0,520
