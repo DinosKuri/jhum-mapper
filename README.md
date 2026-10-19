@@ -4,7 +4,7 @@ Code for mapping annual shifting-cultivation (jhum) clearing in Mizoram, north-e
 1989–2025, from harmonized Landsat 5/7/8/9 in Google Earth Engine, with a 2025 Sentinel-2
 comparison.
 
-Accompanies: Khiangte, L., Sati, V.P., Zoramkhuma (2026) *Anniversary-composite detection of annual shifting cultivation: compositing symmetry, dual-sensor stratification and
+Accompanies: Khiangte, L.,Zoramkhuma, Sati, V.P.  (2026) *Anniversary-composite detection of annual shifting cultivation: compositing symmetry, dual-sensor stratification and
 37 years of Landsat.*
 Submitted.
 
