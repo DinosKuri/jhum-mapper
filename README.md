@@ -1,6 +1,6 @@
 # jhum-mapper
 
-[![Dataset DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23482340.svg)](https://doi.org/10.5281/zenodo.23482340)
+[![Code DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23493080.svg)](https://doi.org/10.5281/zenodo.23493080) [![Dataset DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23482340.svg)](https://doi.org/10.5281/zenodo.23482340)
 
 Code for mapping annual shifting-cultivation (jhum) clearing in Mizoram, north-east India,
 1989–2025, from harmonized Landsat 5/7/8/9 in Google Earth Engine, with a 2025 Sentinel-2
