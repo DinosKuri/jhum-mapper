@@ -1,10 +1,12 @@
 # jhum-mapper
 
+[![Dataset DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23482340.svg)](https://doi.org/10.5281/zenodo.23482340)
+
 Code for mapping annual shifting-cultivation (jhum) clearing in Mizoram, north-east India,
 1989–2025, from harmonized Landsat 5/7/8/9 in Google Earth Engine, with a 2025 Sentinel-2
 comparison.
 
-Accompanies: Khiangte, L.,Zoramkhuma, Sati, V.P.  (2026) *Anniversary-composite detection of annual shifting cultivation: compositing symmetry, dual-sensor stratification and
+Accompanies: Khiangte, L., Zoramkhuma, Sati, V.P. (2026) *Anniversary-composite detection of annual shifting cultivation: compositing symmetry, dual-sensor stratification and
 37 years of Landsat.*
 Submitted.
 
@@ -156,7 +158,7 @@ separate dataset under CC BY 4.0, because the licences differ:
 
 > Khiangte, L., 2026. *Reference points, annual area series and experiment inputs for annual
 > jhum mapping in Mizoram (1989–2025)*, version 1.2.0 [dataset]. Zenodo.
-> DOI: see the dataset record.
+> https://doi.org/10.5281/zenodo.23482340
 
 `figure_data/` duplicates the parts of that dataset the figure scripts need as inputs, so the
 figures run without downloading the dataset. The dataset record is authoritative.
