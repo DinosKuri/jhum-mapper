@@ -1,12 +1,13 @@
-# Running Figures 1, 3 and 9
+# Running Figures 1, 7 and S1
 
-Figures 2, 4, 5, 6, 7 and 8 need only `figure_data/` and run anywhere:
+Figures 2, 3, 4, 5, 6 and S2 need only `figure_data/` and run anywhere (Figure 8 is drawn by
+`python/baselines/fig8_baselines.py`; see its README):
 
 ```bash
-python python/fig2_4-8/plot_line_art.py figure_data/ out/
+python python/line_art/plot_line_art.py figure_data/ out/
 ```
 
-Figures 1, 3 and 9 need raster and vector data that is too large to ship with the code. This
+Figures 1, 7 and S1 need raster and vector data that is too large to ship with the code. This
 file lists exactly what each one needs, where to get it, and the order to run.
 
 ```bash
@@ -31,8 +32,8 @@ metric-identical and is the fallback (`apt install fonts-liberation`).
 | `Copernicus_DSM_*.tif` | Copernicus GLO-30, OpenTopography or the ESA portal | all tiles covering 92.0–93.7 E, 21.8–24.7 N plus a 14 km pad |
 | ALOS PALSAR RTC DEM, 12.5 m | ASF DAAC Vertex, search "ALOS PALSAR RTC high-res" over Mizoram | mosaic the tiles into one GeoTIFF first |
 | Official district shapefile | your own copy, with LGD codes | optional; `prep_districts_official.py` uses it instead of geoBoundaries ADM2 |
-| `figure_data/fig1_validation_points.csv` | in this repository | the 520 points |
-| `figure_data/fig11_validation_2010_points.csv` | in this repository | the 160 points |
+| `figure_data/fig1a_validation_points_2025.csv` | in this repository | the 520 points |
+| `figure_data/fig1b_validation_points_2010.csv` | in this repository | the 160 points |
 
 Put all four GeoJSONs and all the Copernicus tiles in one folder; call it `src/`.
 
@@ -41,7 +42,7 @@ Put all four GeoJSONs and all the Copernicus tiles in one folder; call it `src/`
 ```bash
 mkdir -p layers30 layers_palsar
 
-# 1. vectors + a 30 m Copernicus relief (also used by Figure 9)
+# 1. vectors + a 30 m Copernicus relief (also used by Figure 7)
 python python/fig1/prep_relief_30m.py src/ layers30/ 30
 
 # 2. official districts, if you have the shapefile; writes into both folders
@@ -70,7 +71,7 @@ Outputs `Fig1.pdf` and `Fig1_500dpi.tif`.
 **What changed, and why this has to be re-run.** Panel a now draws the five strata of the
 published design, panel b the three strata of 2010. The version from 11 October drew three
 classes in both panels and no longer matches Figure 1's caption or Section 2.3. Stratum counts
-and n are read from `figure_data/fig1_validation_points.csv` (the 520 points of rounds 1 and 3:
+and n are read from `figure_data/fig1a_validation_points_2025.csv` (the 520 points of rounds 1 and 3:
 A 40, B 45, C 45, D 200, E 190).
 
 The geoid offset is not cosmetic. PALSAR RTC heights are above the WGS84 ellipsoid; Copernicus
@@ -79,7 +80,7 @@ sources step against each other at the state line.
 
 ---
 
-## Figure 3 — visual validation chips, four sites
+## Figure S1 — visual validation chips, four sites
 
 ### What you need
 
@@ -87,7 +88,7 @@ sources step against each other at the state line.
 |---|---|
 | PlanetScope monthly basemap chips, four sites × six months | Planet Explorer, under your Education and Research licence |
 | Sentinel-2 chips, same sites and months | Copernicus Browser, or export them from Earth Engine |
-| Landsat 8/9 chips | `python/gee_exports/fig3_landsat_chips.js` in this repository |
+| Landsat 8/9 chips | `python/gee_exports/figS1_landsat_chips.js` in this repository |
 
 The Planet and Sentinel-2 chips are read by folder and file name, and the script has those
 names hard-coded in its `SITES` dictionary, for example
@@ -100,10 +101,10 @@ V2025_015 (commission error, deciduous leaf-off) and the fourth listed in the sc
 ### Run
 
 ```bash
-# Landsat chips: open python/gee_exports/fig3_landsat_chips.js in the Earth Engine Code
+# Landsat chips: open python/gee_exports/figS1_landsat_chips.js in the Earth Engine Code
 # Editor, run it, then download the FIG3_landsat_* GeoTIFFs from Drive into landsat_chips/
 
-python python/fig3/plot_fig3.py <planet_and_sentinel_dir> landsat_chips/ Fig3
+python python/figS1/plot_figS1.py <planet_and_sentinel_dir> landsat_chips/ FigS1
 ```
 
 **Width.** `plot_fig3.py` lays the figure out at 190 mm, Elsevier's full-page maximum, with
@@ -112,7 +113,7 @@ Nothing in the data changes with the width; only the layout constants at the top
 
 ---
 
-## Figure 9 — the map of jhum, fallow age and two detail insets
+## Figure 7 — the map of jhum, fallow age and two detail insets
 
 ### What you need
 
@@ -126,7 +127,7 @@ Nothing in the data changes with the width; only the layout constants at the top
 | `FIG9_inset_B_jhum.tif`, `FIG9_inset_B_fallow_age.tif`, `FIG9_inset_B_landsat_rgb.tif` | same |
 | `layers30/` with `mizoram.gpkg`, `districts.gpkg`, `bgd.gpkg`, `mmr.gpkg`, `ind_ne_states.gpkg`, `hillshade_30m.tif` | step 1 of Figure 1 above |
 
-Use **`gee/18`**, not `python/gee_exports/fig1_fig9_export_layers.js`. The two scripts export
+Use **`gee/18`**, not `python/gee_exports/fig1_fig7_export_layers.js`. The two scripts export
 different things: `gee/18` writes the individual named rasters the Python reads, while the
 other writes multi-band stacks for a QGIS route that produced no published figure.
 
@@ -139,13 +140,13 @@ credits Copernicus for this figure, so take the hillshade from `layers30/`.
 ```bash
 # 1. Earth Engine: run gee/18, then download every FIG9_* GeoTIFF from Drive into gee_exports/
 # 2. clean the fallow-age raster and build the 1 km state summary
-python python/fig9/prep_fig9.py gee_exports/ fig9_layers/ layers30/mizoram.gpkg
+python python/fig7/prep_fig7.py gee_exports/ fig7_layers/ layers30/mizoram.gpkg
 
 # 3. draw it
-python python/fig9/plot_fig9.py fig9_layers/ layers30/ gee_exports/ Fig9
+python python/fig7/plot_fig7.py fig7_layers/ layers30/ gee_exports/ Fig7
 
 # 4. rasterise for the journal
-pdftoppm -r 500 -png -singlefile Fig9.pdf Fig9_500dpi
+pdftoppm -r 500 -png -singlefile Fig7.pdf Fig7_500dpi
 ```
 
 `prep_fig9.py` prints the 2025 mapped area and the ever-cleared area. The mapped area should
@@ -163,9 +164,9 @@ assertion fails, the rasters came from different runs and should be re-exported 
 Needs everything above, and runs last:
 
 ```bash
-python python/graphical_abstract/plot_graphical_abstract.py figure_data/ fig9_layers/ \
+python python/graphical_abstract/plot_graphical_abstract.py figure_data/ fig7_layers/ \
                                    layers_palsar/ gee_exports/ Graphical_abstract
 ```
 
 It now shows the 2010 assessment and the published 2025 assessment, and skips the superseded
-2025 round that `fig10_two_year_validation.csv` also carries.
+2025 round that `fig4_validation_designs.csv` also carries.

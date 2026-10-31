@@ -1,5 +1,37 @@
 # Changelog
 
+## v1.3.0 — 26 October 2026
+
+### Added
+- `python/baselines/`: LandTrendr (24 configurations) and CCDC (4 configurations) run in Earth Engine
+  at the 1,080 reference points on the same harmonized Landsat collection as the rule, tuned on the
+  400 calibration points and scored on the 2025 and 2010 samples with paired stratified bootstrap
+  differences. Produces Table 3, Fig. 8 and Table S20. Outputs at the points are in the data deposit
+  under `baselines/`.
+- Preprocessing in `python/baselines/ee_common.py` is a port of `gee/00_final_map_mizoram.js`; at the
+  520 points of 2025 it reproduces the published map class of every point.
+
+- `python/baselines/rule_at_points.py` and `branch_check.py`: both branches of the rule at the 520
+  points of 2025 (Earth Engine; reproduces the published class of every point) and the accuracy of
+  each branch alone, 2025 and 2010. Wide branch alone: F1 0.627 (2025) and 0.846 (2010).
+- `python/trend.py`: Mann–Kendall, Kendall's τ and the Theil–Sen slope with Gilbert's (1987)
+  interval for the annual series; reproduces every trend figure of Section 4.5.
+
+### Changed
+- Figure scripts, output names and `figure_data/` files now follow the figure numbers of the current
+  manuscript: `python/fig2_4-8/` is `python/line_art/` (Figs 2–6 and S2), `python/fig3/` is
+  `python/figS1/`, `python/fig9/` is `python/fig7/`, and `python/RUN_FIGURES_1_3_9.md` is
+  `python/RUN_FIGURES_1_7_S1.md`. Old to new: `fig1_validation_points.csv` →
+  `fig1a_validation_points_2025.csv`, `fig11_validation_2010_points.csv` →
+  `fig1b_validation_points_2010.csv`, `fig5_compositing.csv` → `fig3_compositing.csv`,
+  `fig10_two_year_validation.csv` → `fig4_validation_designs.csv`, `figure7a_accuracy.csv` →
+  `fig5a_sensor_accuracy.csv`, `figure7b_disagreement.csv` → `fig5b_sensor_disagreement.csv`,
+  `fig4_annual_series.csv` → `fig6_annual_series.csv`, `fig3_featurespace_points.csv` →
+  `figS2_featurespace_points.csv`. File contents are unchanged. Entries below refer to the old names.
+
+### Unchanged
+- The rule, its thresholds, the maps, the reference labels and every accuracy figure for the rule.
+
 ## v1.2.0 — 19 October 2026
 
 The 2025 reference sample changed, and every 2025 figure changed with it.

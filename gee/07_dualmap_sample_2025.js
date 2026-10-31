@@ -310,7 +310,7 @@ Export.table.toDrive({
   selectors: ['stratum', 'area_km2']});
 
 //--------------------------------------------------------------
-// 6. THE AGREEMENT RASTER  (Figure 7c and Figure 9c)
+// 6. THE AGREEMENT RASTER  (Figure 7c; Figures 7c and 9c of the first submission)
 //--------------------------------------------------------------
 // One byte band on the Landsat 30 m grid, masked everywhere
 // neither map claims a clearing, so the GeoTIFF carries only the
@@ -340,7 +340,7 @@ print('AGREEMENT CLASS AREAS (km2)',
                    maxPixels: 1e13, tileScale: 8}));
 
 // GeoTIFF for QGIS. 30 m, UTM 46N, so it drops straight on top of
-// the Figure 9 layers with no reprojection on the fly.
+// the Figure 7 layers with no reprojection on the fly.
 Export.image.toDrive({
   image: agree.unmask(0).toByte(),
   description: 'MIZ_Jhum_Agreement_L8S2_' + YEAR,

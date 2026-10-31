@@ -7,8 +7,8 @@ Text in Times New Roman (Liberation Serif where Times is not installed).
 
 Usage: python plot_fig1.py <layers_dir> <points_dir> <out_prefix>
 
-<points_dir>/fig1_validation_points.csv      2025 sample: lon, lat, stratum (A-E or 1-5)
-<points_dir>/fig11_validation_2010_points.csv 2010 sample: lon, lat, stratum (1-3)
+<points_dir>/fig1a_validation_points_2025.csv      2025 sample: lon, lat, stratum (A-E or 1-5)
+<points_dir>/fig1b_validation_points_2010.csv 2010 sample: lon, lat, stratum (1-3)
 Stratum counts and n in the titles and legend are read from these files.
 """
 import sys
@@ -62,7 +62,7 @@ def pts(path):
     lon = next(c for c in ('lon', 'longitude', 'x') if c in d.columns)
     lat = next(c for c in ('lat', 'latitude', 'y') if c in d.columns)
     return gpd.GeoDataFrame(d, geometry=gpd.points_from_xy(d[lon], d[lat]), crs=G)
-p25 = pts(f'{PTS}/fig1_validation_points.csv'); p10 = pts(f'{PTS}/fig11_validation_2010_points.csv')
+p25 = pts(f'{PTS}/fig1a_validation_points_2025.csv'); p10 = pts(f'{PTS}/fig1b_validation_points_2010.csv')
 p25['stratum'] = p25.stratum.astype(str).str.strip().str.upper().replace({'1': 'A', '2': 'B', '3': 'C', '4': 'D', '5': 'E'})
 p10['stratum'] = p10.stratum.astype(int)
 bad = set(p25.stratum) - set(STRATA25)

@@ -1,4 +1,4 @@
-"""Clean the v1 Earth Engine exports and build 1 km summaries for Figure 9.
+"""Clean the v1 Earth Engine exports and build 1 km summaries for Figure 7.
 
 Fallow-age fix: the v1 export wrote 'never cleared' and 'outside the state'
 as 0, the same value as 'cleared in 2025'. A pixel was ever cleared if and

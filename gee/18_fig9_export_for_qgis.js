@@ -1,7 +1,7 @@
 //==============================================================
 // FIGURE 9 — EXPORT LAYERS FOR QGIS
 //
-// Produces every raster Figure 9 needs, ready to style in QGIS:
+// Produces every raster Figure 7 needs (Figure 9 of the first submission), ready to style in QGIS:
 //   1. jhum_2025            1 = mapped jhum, 0 = not, nodata outside
 //   2. fallow_age           years since last clearing (1989-2025)
 //   3. jhum_count           number of clearings per pixel
@@ -14,7 +14,7 @@
 // in QGIS without reprojection.
 //
 // NOT THE ROUTE USED FOR THE PUBLISHED FIGURE 9. The published
-// figure was drawn in Matplotlib by python/fig9/, on a Copernicus
+// figure was drawn in Matplotlib by python/fig7/, on a Copernicus
 // GLO-30 hillshade. The SRTM hillshade and elevation layers here
 // belong to this QGIS route only and are not in the paper.
 //==============================================================
@@ -30,7 +30,7 @@ var DRIVE_DIR = 'Jhum_fig9';
 var CRS       = 'EPSG:32646';
 
 // Detail windows for the insets. Replace with areas you know well;
-// these are centred on validation points a and b of Figure 3.
+// these are centred on validation points a and b of Figure S1.
 var INSETS = [
   {name: 'inset_A', lon: 93.277870, lat: 23.323005, halfWidthM: 2500},
   {name: 'inset_B', lon: 92.909740, lat: 22.668672, halfWidthM: 2500}

@@ -1,7 +1,8 @@
-"""Figures 2, 4, 5, 6, 7, 8 in the house style of Figs 1, 3 and 9:
+"""Figures 2, 3, 4, 5, 6 and S2 in the house style of Figs 1, 7 and S1:
 Times New Roman (Liberation Serif fallback), all text black, 9-10 pt at print size, 600 dpi PNG + vector PDF.
 Usage: python plot_line_art.py <figure_data_dir> <out_dir>
-Manuscript numbering: Fig 4 = feature space, Fig 5 = accuracy 2010 vs 2025, Fig 8 = annual series.
+Manuscript numbering: Fig 2 windows, Fig 3 compositing, Fig 4 sampling designs, Fig 5 sensors,
+Fig 6 annual series, Fig S2 calibration feature space. Fig 8 is drawn by python/baselines/fig8_baselines.py.
 """
 import sys, os
 import numpy as np, pandas as pd
@@ -89,8 +90,8 @@ ax.spines['left'].set_visible(False); ax.spines['bottom'].set_position(('data', 
 ax.set_xlabel('Month', labelpad=16)
 save(fig, 'Fig2_windows', 140)
 
-# ------------------------------------------------------------------ Fig 4: calibration feature space
-fs = pd.read_csv(f'{D}/fig3_featurespace_points.csv')
+# ------------------------------------------------------------------ Fig S2: calibration feature space
+fs = pd.read_csv(f'{D}/figS2_featurespace_points.csv')
 c = fs[fs.set == 'calibration']
 fig, ax = plt.subplots(figsize=(90 * MM, 80 * MM))
 ax.add_patch(Rectangle((-0.65, 0.20), 0.65 + 0.26, 1.2, fc='#f6e4e4', ec='none', zorder=0))
@@ -107,10 +108,10 @@ ax.set_xlabel(r'NBR$_{\mathrm{post}}$ (wide window, 25th percentile)')
 ax.set_ylabel('dNBR (wide window)')
 ax.grid(**GRID); ax.set_axisbelow(True)
 ax.legend(loc='upper right', handletextpad=0.3, borderaxespad=0.3)
-save(fig, 'Fig4_featurespace', 90)
+save(fig, 'FigS2_featurespace', 90)
 
-# ------------------------------------------------------------------ Fig 5: accuracy by sampling design
-acc = pd.read_csv(f'{D}/fig10_two_year_validation.csv')
+# ------------------------------------------------------------------ Fig 4: accuracy by sampling design
+acc = pd.read_csv(f'{D}/fig4_validation_designs.csv')
 fig, ax = plt.subplots(figsize=(140 * MM, 76 * MM))
 metrics = [('UA', "User's\naccuracy"), ('PA', "Producer's\naccuracy"), ('F1', 'F1')]
 cols = [BLUE, ORANGE, RED]
@@ -135,10 +136,10 @@ ax.set_ylabel('Accuracy')
 ax.yaxis.grid(True, **GRID); ax.set_axisbelow(True)
 ax.legend(loc='lower center', ncol=3, bbox_to_anchor=(0.5, 1.0), handlelength=1.1,
           columnspacing=1.4, fontsize=8)
-save(fig, 'Fig5_accuracy_eras', 140)
+save(fig, 'Fig4_accuracy_designs', 140)
 
-# ------------------------------------------------------------------ Fig 6: compositing designs
-cp = pd.read_csv(f'{D}/fig5_compositing.csv').sort_values('order')
+# ------------------------------------------------------------------ Fig 3: compositing designs
+cp = pd.read_csv(f'{D}/fig3_compositing.csv').sort_values('order')
 labs = ['v1\nmedian\nadjacent', 'v2\nasym.\nOct–Jan', 'v3\nanniv.\nMar–May\n75/25',
         'sym25\nanniv.\nMar–May\n25/25', 'v6 (final)\nanniv.\nNov–May\n25/25']
 fig, (a1, a2) = plt.subplots(1, 2, figsize=(170 * MM, 72 * MM), gridspec_kw=dict(width_ratios=[1.65, 1], wspace=0.30))
@@ -161,11 +162,11 @@ a2.set_yticks(yy, ['v1', 'v2', 'v3', 'sym25', 'v6'], fontsize=10)
 a2.set_xlabel('Separation ratio (log scale)')
 a2.xaxis.grid(True, **GRID); a2.set_axisbelow(True)
 letter(a2, 'b', -0.16)
-save(fig, 'Fig6_compositing', 170)
+save(fig, 'Fig3_compositing', 170)
 
-# ------------------------------------------------------------------ Fig 7: Landsat against Sentinel-2
-a7 = pd.read_csv(f'{D}/figure7a_accuracy.csv')
-b7 = pd.read_csv(f'{D}/figure7b_disagreement.csv')
+# ------------------------------------------------------------------ Fig 5: Landsat against Sentinel-2
+a7 = pd.read_csv(f'{D}/fig5a_sensor_accuracy.csv')
+b7 = pd.read_csv(f'{D}/fig5b_sensor_disagreement.csv')
 CONN, BAND, PALE = '#9a9a9a', '#eef2f7', '#cfcfcf'
 fig = plt.figure(figsize=(140 * MM, 86 * MM))
 gs = fig.add_gridspec(2, 1, height_ratios=[1.0, 1.18], left=0.205, right=0.885,
@@ -237,10 +238,10 @@ ax2.legend(handles=[Rectangle((0, 0), 1, 1, fc=BLUE, ec='none', label='Reference
            handleheight=0.9, handletextpad=0.45, columnspacing=1.8, fontsize=8)
 ax2.text(-0.255, 1.12, 'b', transform=ax2.transAxes, fontsize=10, fontweight='bold',
          ha='left', va='bottom')
-save(fig, 'Fig7_sensors', 140)
+save(fig, 'Fig5_sensors', 140)
 
-# ------------------------------------------------------------------ Fig 8: annual series
-a = pd.read_csv(f'{D}/fig4_annual_series.csv')
+# ------------------------------------------------------------------ Fig 6: annual series
+a = pd.read_csv(f'{D}/fig6_annual_series.csv')
 fig, (ax, bx) = plt.subplots(2, 1, figsize=(190 * MM, 112 * MM), sharex=True,
                              gridspec_kw=dict(height_ratios=[3.1, 1], hspace=0.08))
 ax.axvspan(1988.5, 1997.5, color='#efefef', zorder=0, lw=0)
@@ -275,5 +276,5 @@ bx.set_ylim(50, 102); bx.set_yticks([60, 80, 100])
 bx.set_ylabel('Coverage (%)'); bx.yaxis.grid(True, **GRID); bx.set_axisbelow(True)
 bx.set_xlim(1988.3, 2025.7); bx.set_xticks(range(1990, 2026, 5)); bx.set_xlabel('Year')
 letter(bx, 'b', -0.115, 0.95)
-save(fig, 'Fig8_annual_series', 190)
-print('font', SERIF, 'sen', round(sl, 2), round(lo, 1), round(hi, 1))
+save(fig, 'Fig6_annual_series', 190)
+print('font', SERIF, '| Sen slope 1998-2025', round(sl, 1), 'km2/yr (the interval reported in the paper is from python/trend.py)')

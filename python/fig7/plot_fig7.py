@@ -1,11 +1,11 @@
-"""Figure 9 (v4): mapped jhum (2025) and fallow dynamics (1989-2025) at 30 m.
+"""Figure 7 (v4; Figure 9 of the first submission): mapped jhum (2025) and fallow dynamics (1989-2025) at 30 m.
 
 Layout: two state maps side by side and a right-hand column with the detail windows and legends.
 Text in Times New Roman (Liberation Serif, metric-identical, where Times is not installed).
 Nothing is printed on top of the state: titles sit above the frames, statistics and legends in
 the column, and window labels outside the state with leader lines.
 
-Usage: python plot_fig9.py <fig9_layers> <relief_layers_30m> <gee_exports_dir> <out_prefix>
+Usage: python plot_fig9.py <fig7_layers> <relief_layers_30m> <gee_exports_dir> <out_prefix>
 """
 import sys
 import numpy as np, geopandas as gpd, rasterio

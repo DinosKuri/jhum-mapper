@@ -1,7 +1,7 @@
 //==============================================================
 // FIGURE 3 — LANDSAT CHIPS FOR THE FOUR VISUAL-VALIDATION SITES
 //
-// For each site and each month shown in Figure 3 (same months as the
+// For each site and each month shown in Figure S1 (same months as the
 // PlanetScope and Sentinel-2 rows), this script builds a Landsat 8 + 9
 // monthly composite and exports it as ONE multi-band GeoTIFF per site:
 //
@@ -27,7 +27,7 @@ var HALF_M    = 1500;                 // half-width of the chip (m): 3 x 3 km
 var CRS       = 'EPSG:32646';
 var GRID      = [30, 0, 15, 0, -30, 15];   // native Landsat C2 UTM grid (pixel corners at 15 m offsets)
 
-// months as [year, month, label]; identical to the Planet / Sentinel-2 rows of Figure 3
+// months as [year, month, label]; identical to the Planet / Sentinel-2 rows of Figure S1
 var SITES = [
   {panel: 'a', id: 'V2025_051', lon: 93.277870, lat: 23.323005,
    months: [[2024,11,'NOV2024'],[2024,12,'DEC2024'],[2025,1,'JAN2025'],

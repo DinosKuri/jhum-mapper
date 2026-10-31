@@ -7,7 +7,7 @@ Code for mapping annual shifting-cultivation (jhum) clearing in Mizoram, north-e
 comparison.
 
 Accompanies: Khiangte, L., Zoramkhuma, Sati, V.P. (2026) *Anniversary-composite detection of annual shifting cultivation: compositing symmetry, dual-sensor stratification and
-37 years of Landsat.*
+comparison with LandTrendr and CCDC over 37 years of Landsat.*
 Submitted.
 
 Reference data are deposited separately as a dataset; see **Reference data** below.
@@ -52,7 +52,14 @@ bootstrap of 4,000 resamples. Overall accuracy is uninformative at this prevalen
 jhum is about 2.7 per cent of the state, so a map that detected nothing would score 0.973.
 
 Annual mapped area falls from a mean of 975 km² (1998–2009) to 443 km² (2020–2025);
-Mann–Kendall τ = −0.513, p = 0.0001, Theil–Sen slope −20.8 km² yr⁻¹.
+Mann–Kendall τ = −0.513, p = 0.0001, Theil–Sen slope −20.8 km² yr⁻¹ (95 % CI −36.0 to −12.7;
+`python/trend.py`).
+
+Against LandTrendr and CCDC (`python/baselines/`, 28 configurations tuned on the same calibration
+points): in 2025 the calibration-selected LandTrendr configuration reaches F1 0.639 against 0.642
+for the rule (paired difference +0.003 [−0.059, 0.072]); in 2010 the rule's F1 of 0.890 exceeds
+every configuration by at least 0.26. With the wide branch alone the rule scores F1 0.627 (2025)
+and 0.846 (2010).
 
 The 2025 figures above supersede the 310-point, three-stratum round published in v1.0.0 of
 this repository (user's 0.672 against 0.886, producer's 0.614 against 0.901). The map is
@@ -70,13 +77,17 @@ gee/                 Earth Engine scripts, in the order they were run
   07                 the 2025 validation design, round 1: five strata on both maps
   08                 round 2, an enlargement of strata D and E, later withdrawn
   09–18              annual series, portable tool, viewers, 2010 validation,
-                     sensor consistency and transition, regional transfer, Fig 9 export
+                     sensor consistency and transition, regional transfer, Fig 7 export
   19                 area and check points of the preliminary v3 map
   20                 round 3, the enlargement of strata D and E in the published sample
   superseded/        the earlier single-map validation design and Sentinel-2 test.
                      They produced numbers the paper still reports as the comparison
                      case (Table S2, Table S2c); they are not the published design.
-python/              figure scripts (Matplotlib); see Running the figure scripts below
+python/              figure scripts (Matplotlib), one folder per figure in the paper's numbering
+                     (fig1, line_art = Figs 2–6 and S2, fig7, figS1); see Running the figure scripts
+python/baselines/    LandTrendr and CCDC baselines at the reference points (Python Earth Engine
+                     API), their scoring against the rule, Table 3, Table S20 and Fig. 8;
+                     see python/baselines/README.md
 figure_data/         CSV inputs to the figures; figure_data/README.md maps each file
                      to its figure in the paper
 colab/               the original threshold fitting on the 400 calibration points
@@ -113,13 +124,13 @@ run; every such line is marked `// PRIVATE ASSET`. What to put there instead:
 | `gee/09` | `ASSET_DIR` | Any asset folder you can write to; it is only the export destination. |
 
 Nothing in the published map depends on these. `gee/00`, `gee/05`, `gee/06`, `gee/07`,
-`gee/08` and `gee/20` — the rule, the Sentinel-2 implementation and the validation samplers —
+`gee/08` and `gee/20` (the rule, the Sentinel-2 implementation and the validation samplers)
 run with no asset of your own, on the FAO GAUL boundary.
 
 ## Running the figure scripts
 
-Figures 2, 4, 5, 6, 7 and 8 need only `figure_data/` and run straight from a clone. Figures 1,
-3 and 9 need rasters and vectors too large to ship here; `python/RUN_FIGURES_1_3_9.md` lists
+Figures 2, 3, 4, 5, 6, 8 and S2 need only `figure_data/` (Figure 8 also the baseline outputs in the
+dataset record) and run straight from a clone. Figures 1, 7 and S1 need rasters and vectors too large to ship here; `python/RUN_FIGURES_1_7_S1.md` lists
 every input, where to download it and the order to run.
 
 ```bash
@@ -134,20 +145,22 @@ python python/fig1/prep_relief_palsar.py      <palsar_dem.tif> <copernicus_dem_3
                                               layers_palsar/mizoram.gpkg layers_palsar/
 # 3. Figures
 python python/fig1/plot_fig1.py  layers_palsar/ figure_data/ Fig1
-python python/fig2_4-8/plot_line_art.py figure_data/ out/
-python python/fig3/plot_fig3.py  <planet_and_sentinel_tiles> <landsat_chips> Fig3
-python python/fig9/prep_fig9.py  <gee_exports> fig9_layers/ layers30/mizoram.gpkg
-python python/fig9/plot_fig9.py  fig9_layers/ layers30/ <gee_exports> Fig9
-pdftoppm -r 500 -png -singlefile Fig9.pdf Fig9_500dpi
-python python/graphical_abstract/plot_graphical_abstract.py figure_data/ fig9_layers/ \
+python python/line_art/plot_line_art.py figure_data/ out/
+python python/trend.py figure_data/fig6_annual_series.csv      # trend statistics of Section 4.5
+python python/figS1/plot_figS1.py  <planet_and_sentinel_tiles> <landsat_chips> FigS1
+python python/fig7/prep_fig7.py  <gee_exports> fig7_layers/ layers30/mizoram.gpkg
+python python/fig7/plot_fig7.py  fig7_layers/ layers30/ <gee_exports> Fig7
+pdftoppm -r 500 -png -singlefile Fig7.pdf Fig7_500dpi
+python python/baselines/fig8_baselines.py out/        # needs the baseline outputs; see its README
+python python/graphical_abstract/plot_graphical_abstract.py figure_data/ fig7_layers/ \
                                               layers_palsar/ <gee_exports> Graphical_abstract
 ```
 
 Relief: Figure 1 uses the ALOS PALSAR 12.5 m DEM inside Mizoram, converted to orthometric
-height with a +48.5 m geoid offset, and Copernicus GLO-30 beyond the state. Figure 9 and the
+height with a +48.5 m geoid offset, and Copernicus GLO-30 beyond the state. Figure 7 and the
 graphical abstract use GLO-30 at 30 m. In the published figures, SRTM GL1 v003 is used for
 one thing only: the ≥ 10° slope constraint in the regional transfer test (`gee/17`). It also
-appears as a hillshade in `gee/18` and `python/gee_exports/fig1_fig9_export_layers.js`, which
+appears as a hillshade in `gee/18` and `python/gee_exports/fig1_fig7_export_layers.js`, which
 export layers for a QGIS route that was built first and then not used; both carry a header
 saying so.
 
@@ -157,14 +170,22 @@ The reference points, the annual area series and the experiment inputs are depos
 separate dataset under CC BY 4.0, because the licences differ:
 
 > Khiangte, L., 2026. *Reference points, annual area series and experiment inputs for annual
-> jhum mapping in Mizoram (1989–2025)*, version 1.2.0 [dataset]. Zenodo.
-> https://doi.org/10.5281/zenodo.23482340
+> jhum mapping in Mizoram (1989–2025)*, version 1.3.0 [dataset]. Zenodo.
+> https://doi.org/10.5281/zenodo.23482340 (v1.2.0; see the record for later versions)
 
 `figure_data/` duplicates the parts of that dataset the figure scripts need as inputs, so the
 figures run without downloading the dataset. The dataset record is authoritative.
 
 PlanetScope imagery used for reference interpretation cannot be redistributed under its
 licence terms.
+
+## Figure numbers
+
+Since v1.3.0, script folders, output names and `figure_data/` files follow the figure numbers of the
+current manuscript. Against the first submission: old Fig 3 is Fig. S1, old Fig 4 is Fig. S2,
+old Fig 5 is Fig. 4, old Fig 6 is Fig. 3, old Fig 7 is Fig. 5, old Fig 8 is Fig. 6 and old Fig 9 is
+Fig. 7; Figs 1 and 2 are unchanged and Fig. 8 is new. The Earth Engine scripts in `gee/` keep their
+run-order file names (`gee/18_fig9_export_for_qgis.js` exports the layers of Figure 7).
 
 ## How the figures were produced
 

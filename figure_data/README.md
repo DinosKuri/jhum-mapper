@@ -1,26 +1,28 @@
 # figure_data
 
-CSV inputs to the Matplotlib scripts in `python/`. The file names come from an earlier
-figure order and no longer match the figure numbers in the paper. This table is the
-mapping that matters.
+CSV inputs to the Matplotlib scripts in `python/`. Since v1.3.0 each file name carries the number
+of the figure it feeds in the current manuscript.
 
 | File | Read by | Figure in the paper |
 |---|---|---|
-| `fig3_featurespace_points.csv` | `fig2_4-8/plot_line_art.py`, `graphical_abstract/` | Figure 4, calibration feature space |
-| `fig10_two_year_validation.csv` | `fig2_4-8/plot_line_art.py`, `graphical_abstract/` | Figure 5, accuracy under three sampling designs |
-| `fig5_compositing.csv` | `fig2_4-8/plot_line_art.py` | Figure 6, compositing designs |
-| `figure7a_accuracy.csv`, `figure7b_disagreement.csv` | `fig2_4-8/plot_line_art.py` | Figure 7, Landsat against Sentinel-2 |
-| `fig4_annual_series.csv` | `fig2_4-8/plot_line_art.py`, `graphical_abstract/` | Figure 8, annual series |
-| `fig1_validation_points.csv` | `fig1/plot_fig1.py` | Figure 1a, the 520 reference points |
-| `fig11_validation_2010_points.csv` | `fig1/plot_fig1.py` | Figure 1b, the 160 reference points for 2010 |
+| `fig1a_validation_points_2025.csv` | `fig1/plot_fig1.py` | Figure 1a, the 520 reference points |
+| `fig1b_validation_points_2010.csv` | `fig1/plot_fig1.py` | Figure 1b, the 160 reference points for 2010 |
+| `fig3_compositing.csv` | `line_art/plot_line_art.py`, `graphical_abstract/` | Figure 3, compositing designs |
+| `fig4_validation_designs.csv` | `line_art/plot_line_art.py`, `graphical_abstract/` | Figure 4, accuracy under three sampling designs |
+| `fig5a_sensor_accuracy.csv`, `fig5b_sensor_disagreement.csv` | `line_art/plot_line_art.py` | Figure 5, Landsat against Sentinel-2 |
+| `fig6_annual_series.csv` | `line_art/plot_line_art.py`, `graphical_abstract/` | Figure 6, annual series |
+| `figS2_featurespace_points.csv` | `line_art/plot_line_art.py` | Figure S2, calibration feature space |
 
-Two notes on `fig10_two_year_validation.csv`. It holds three rows, not two: 2010 under the
+Figure 8 (LandTrendr and CCDC against the rule) reads the baseline outputs deposited in the dataset
+record under `baselines/`; see `python/baselines/README.md`.
+
+Two notes on `fig4_validation_designs.csv`. It holds three rows, not two: 2010 under the
 three-stratum design, 2025 under the same three-stratum design, and 2025 under the published
-five-stratum design. Figure 5 draws all three, because the point of that figure is that the
+five-stratum design. Figure 4 draws all three, because the point of that figure is that the
 second and third assess the same map and differ only by design. The graphical abstract drops
 the middle row and shows the two published assessments.
 
-`fig4_annual_series.csv` gives 2025 as 528.57 km² in the scene projection; the paper reports
+`fig6_annual_series.csv` gives 2025 as 528.57 km² in the scene projection; the paper reports
 528.2 km², the same map measured on the declared EPSG:32646 30 m grid.
 
 The full reference tables, including the point-level labels these summaries come from, are in

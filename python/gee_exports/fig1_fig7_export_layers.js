@@ -23,9 +23,9 @@
 //   7. Neighbouring states and countries exported for labels/context.
 //
 // Rule and windows are identical to 00_MIZORAM_FINAL.js (v6).//
-// NOT THE ROUTE USED FOR THE PUBLISHED FIGURES. Figure 9 and the
+// NOT THE ROUTE USED FOR THE PUBLISHED FIGURES. Figure 7 and the
 // graphical abstract in the paper were drawn in Matplotlib by
-// python/fig9/, on a Copernicus GLO-30 hillshade. This QGIS route
+// python/fig7/, on a Copernicus GLO-30 hillshade. This QGIS route
 // and its SRTM hillshade are kept because they were built first and
 // still work; nothing in the paper is rendered from them.
 //
@@ -49,7 +49,7 @@ var CRS       = 'EPSG:32646';
 var AGG_M     = 1000;      // cell size for the state-scale panels (m)
 var NODATA    = -1;        // sentinel for every raster except elevation
 
-// Detail windows, centred on validation points a and b of Figure 3
+// Detail windows, centred on validation points a and b of Figure S1
 // so the same places appear in both figures. 2.5 km half-width = 5 km.
 var INSETS = [
   {name: 'c1', lon: 93.277870, lat: 23.323005, halfWidthM: 2500},
@@ -223,7 +223,7 @@ var stack30 = ee.Image.cat([jhumMap.toFloat(), fallowAge.toFloat(),
                 .unmask(NODATA).updateMask(ROI_MASK).unmask(NODATA).toFloat().clip(roi);
 exportImg(stack30, 'FIG9_stack30m_' + START + '_' + END, roi.geometry(), 30, NODATA);
 
-// (c) terrain over state + 15 km, for Figures 1 and 9
+// (c) terrain over state + 15 km, for Figures 1 and 7
 exportImg(HILLSHADE.clip(CONTEXT_BOX).toByte(), 'FIG_hillshade_context', CONTEXT_BOX, 30, 0);
 exportImg(SRTM.clip(roi).unmask(-9999).clip(CONTEXT_BOX).toInt16(),
           'FIG_elevation_state', CONTEXT_BOX, 30, -9999);

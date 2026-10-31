@@ -1,4 +1,4 @@
-"""Figure 3 (final): visual validation, PlanetScope / Sentinel-2 / Landsat 8/9, four sites side by side.
+"""Figure S1 (final; Figure 3 of the first submission): visual validation, PlanetScope / Sentinel-2 / Landsat 8/9, four sites side by side.
 
 Every tile is cut from the georeferenced source to the same 1.24 x 1.24 km square (UTM 46N) centred
 on the validation point, so all tiles of a site show identical ground. All text in Times New Roman
